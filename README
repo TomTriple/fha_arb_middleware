@@ -1,0 +1,12 @@
+== OSM-Conversion
+
+Transform openstreetmaps.org so called osm-format in a format that only containes the nodes which have children that are
+declared as amenity node.
+
+Example of target format:   
+
+<poi lat="48.359974" long="10.908032">
+  <tag k="amenity" v="fast_food"/>
+  <tag k="name" v="Amigos Pizza"/>
+</poi>
+
