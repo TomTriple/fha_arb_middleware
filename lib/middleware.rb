@@ -52,12 +52,17 @@ class StreamListener
     out += %Q(</result>)
     out
   end
- 
+
+
+  def self.begin_parse(a,b,c,d) 
+    listener = StreamListener.new
+    #xml = open("http://www.openstreetmap.org/api/0.6/map?bbox=10.90708,48.359966,10.910916,48.362835").read
+    xml = open("http://www.openstreetmap.org/api/0.6/map?bbox=#{a},#{b},#{c},#{d}").read 
+    REXML::Document.parse_stream(xml, listener)
+    listener.transform_relevant 
+  end
+
 end
+
+
  
-listener = StreamListener.new 
-xml = open("http://www.openstreetmap.org/api/0.6/map?bbox=10.90708,48.359966,10.910916,48.362835").read
-REXML::Document.parse_stream(xml, listener)
-
-puts listener.transform_relevant
-
